@@ -127,7 +127,6 @@ CanvasCore.prototype.printRain = function () {
     this.moveRain();
 }
 
-
 CanvasCore.prototype.moveRain = function () {
     for (var b = 0; b < particles.length; b++) {
         var p = particles[b];
