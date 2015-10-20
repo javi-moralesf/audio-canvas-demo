@@ -16,8 +16,8 @@ define([], function () {
         this.audio.analyser.getFloatTimeDomainData(this.audio.dataArray);
 
         this.clearCanvas();
-        this.printRain();
-        this.printWave();
+        this.printCanvas();
+        this.moveCanvas();
     };
 
     CanvasCore.prototype.loop = function () {
@@ -27,6 +27,15 @@ define([], function () {
     CanvasCore.prototype.clearCanvas = function () {
         this.ctx.fillStyle = 'rgb(0, 0, 0)';
         this.ctx.fillRect(0, 0, this.width, this.height);
+    };
+
+    CanvasCore.prototype.printCanvas = function () {
+        this.printWave();
+        this.printRain();
+    };
+
+    CanvasCore.prototype.moveCanvas = function () {
+        this.moveRain();
     };
 
     CanvasCore.prototype.printWave = function () {
@@ -72,8 +81,7 @@ define([], function () {
             this.ctx.stroke();
         }
         this.ctx.restore();
-        this.moveRain();
-    }
+    };
 
     CanvasCore.prototype.moveRain = function () {
         for (var b = 0; b < this.particles.length; b++) {
@@ -92,20 +100,15 @@ define([], function () {
     };
 
     CanvasCore.prototype.setRainParticles = function (limit) {
-        var init = [];
+        this.particles = [];
         for (var a = 0; a < limit; a++) {
-            init.push({
+            this.particles.push({
                 x: Math.random() * this.width,
                 y: Math.random() * this.height,
                 l: Math.random(),
                 xs: Math.random() / 2,
                 ys: Math.random()
-            })
-        }
-
-        this.particles = [];
-        for (var b = 0; b < limit; b++) {
-            this.particles[b] = init[b];
+            });
         }
     };
 
