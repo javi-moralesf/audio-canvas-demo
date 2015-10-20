@@ -1,0 +1,22 @@
+{
+  "name": "audio-canvas-demo",
+  "homepage": "https://github.com/javi-moralesf/audio-canvas-demo",
+  "authors": [
+    "Javi Morales <javiermoralesfernandez@gmail.com>"
+  ],
+  "description": "Demo using Web Audio API + HTML5 canvas",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.20"
+  }
+}
