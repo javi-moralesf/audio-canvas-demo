@@ -1,9 +1,10 @@
 define(function () {
-    function BufferLoader(context, analyser, urlList, playingList, callback) {
-        this.context = context;
-        this.analyser = analyser;
-        this.urlList = urlList;
-        this.playingList = playingList;
+    function BufferLoader(audioCore, callback) {
+        this.audioCore = audioCore;
+        this.context = this.audioCore.ctx;
+        this.analyser = this.audioCore.analyser;
+        this.urlList = this.audioCore.mediaArray;
+        this.playingList = this.audioCore.playingList;
         this.onload = callback;
         this.bufferList = new Array();
         this.loadCount = 0;
@@ -28,7 +29,7 @@ define(function () {
                     }
                     loader.bufferList[index] = buffer;
                     if (++loader.loadCount == loader.urlList.length)
-                        loader.onload(loader.bufferList, loader.context, loader.analyser, loader.playingList);
+                        loader.onload(loader.audioCore, loader.bufferList, loader.context, loader.analyser, loader.playingList);
                 },
                 function(error) {
                     console.error('decodeAudioData error', error);

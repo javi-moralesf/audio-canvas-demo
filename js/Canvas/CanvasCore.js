@@ -30,6 +30,7 @@ define([], function () {
     };
 
     CanvasCore.prototype.printCanvas = function () {
+        this.printLoader();
         this.printWave();
         this.printRain();
     };
@@ -38,6 +39,15 @@ define([], function () {
         this.moveRain();
     };
 
+    CanvasCore.prototype.printLoader = function () {
+        if(!this.audio.mediaLoaded){
+            this.ctx.save();
+            this.ctx.font = '40pt Calibri';
+            this.ctx.fillStyle = 'rgb(255, 255, 255)';
+            this.ctx.fillText('Loading songs...', this.width/2 - 180, 100);
+            this.ctx.restore();
+        }
+    };
     CanvasCore.prototype.printWave = function () {
         this.ctx.save();
         this.ctx.lineWidth = 4;

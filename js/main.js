@@ -29,7 +29,7 @@ requirejs(['Audio/AudioCore', 'Canvas/CanvasCore'], function(AudioCore, CanvasCo
             'media/sound_27.mp3'
         ],
         2048,
-        function finishedLoading(bufferList, context, analyser, playingList) {
+        function finishedLoading(audioCore, bufferList, context, analyser, playingList) {
             for (var i in bufferList) {
                 var buffer = bufferList[i],
                     source = context.createBufferSource();
@@ -37,8 +37,8 @@ requirejs(['Audio/AudioCore', 'Canvas/CanvasCore'], function(AudioCore, CanvasCo
                 source.buffer = buffer;
                 source.loop = true;
                 source.start();
-                console.log('push');
                 playingList.push(source);
+                audioCore.mediaLoaded = true;
             }
         }
     );

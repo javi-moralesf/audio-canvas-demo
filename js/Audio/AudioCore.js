@@ -5,16 +5,14 @@ define(['Lib/BufferLoader'], function (BufferLoader) {
         this.analyser.fftSize = size;
         this.playingList = [];
         this.paused = true;
+        this.mediaLoaded = false;
         this.mediaArray = mediaLibrary;
 
 
         this.bufferLength = this.analyser.fftSize;
         this.dataArray = new Float32Array(this.bufferLength);
         this.bufferLoader = new BufferLoader(
-            this.ctx,
-            this.analyser,
-            this.mediaArray,
-            this.playingList,
+            this,
             finishLoadingCallback
         );
     }
